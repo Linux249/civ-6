@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import Nav from '../components/nav';
 
 export const TILE = {
@@ -87,7 +88,18 @@ export function Tile({ clickHandler, type }) {
   );
 }
 
+export function FocusCard({ focusCard, clickHandler }) {
+  return (
+    <div onClick={clickHandler} className={''}>
+      card
+    </div>
+  );
+}
+// hexagon from https://codepen.io/ericornelissen/pen/vWbWKv
+
 export default function IndexPage() {
+  const [sequence, setSequence] = useState([1, 3, 4, 2, 5]);
+
   function handleClickTile(e) {
     /**
      * relying on dom node is a special way, less know but very save
@@ -116,6 +128,9 @@ export default function IndexPage() {
         <div className="container__activeFocusCard">no active</div>
       </div>
       <div className="container__focusCards">
+        {sequence.map((focusCardId) => (
+          <FocusCard />
+        ))}
         <div className="box__focusCard">
           <h4 className="label">Title: Since</h4>
           <h4 className="label">Level: 1</h4>
